@@ -29,7 +29,7 @@ class Manager {
             TestTable tableFromBase = entityManager.find(TestTable.class, table.getId());
 
             System.out.println("TestTable " + tableFromBase.getId() + " " + tableFromBase.getTableName() +
-                    " have " + tableFromBase.getColumnCount() + "columns");
+                    " have " + tableFromBase.getColumnCount() + " columns");
 
             //zakoncz transakcje
             entityManager.getTransaction().commit();
