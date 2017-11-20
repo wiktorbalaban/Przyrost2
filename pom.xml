@@ -39,7 +39,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        hibernate.Manager
+                                        hibernate.test.Manager
                                     </mainClass>
                                 </manifest>
                             </archive>
