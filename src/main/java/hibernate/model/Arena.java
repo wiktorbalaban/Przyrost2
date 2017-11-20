@@ -11,18 +11,18 @@ public class Arena {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "arena")
-    private String arena;
+    @Column(name = "name")
+    private String name;
 
     public int getId() {
         return id;
     }
 
-    public String getArena() {
-        return arena;
+    public String getName() {
+        return name;
     }
 
-    public void setArena(String arena) {
-        this.arena = arena;
+    public void setName(String name) {
+        this.name = name;
     }
 }

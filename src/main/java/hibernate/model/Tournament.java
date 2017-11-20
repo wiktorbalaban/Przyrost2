@@ -12,8 +12,8 @@ public class Tournament {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "tournament")
-    private String tournament;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "winner")
     private String winner;
@@ -32,12 +32,12 @@ public class Tournament {
         return id;
     }
 
-    public String getTournament() {
-        return tournament;
+    public String getName() {
+        return name;
     }
 
-    public void setTournament(String tournament) {
-        this.tournament = tournament;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getWinner() {

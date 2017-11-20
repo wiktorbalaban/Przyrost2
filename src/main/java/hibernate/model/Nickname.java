@@ -11,8 +11,8 @@ public class Nickname {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "nickname")
-    private String nickname;
+    @Column(name = "name")
+    private String name;
 
     public Nickname() {}
 
@@ -20,11 +20,11 @@ public class Nickname {
         return id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getName() {
+        return name;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setName(String name) {
+        this.name = name;
     }
 }
