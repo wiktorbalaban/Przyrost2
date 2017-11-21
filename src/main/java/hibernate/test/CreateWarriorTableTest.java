@@ -80,4 +80,26 @@ public class CreateWarriorTableTest {
         return warrior;
     }
 
+    public static Warrior createTestWarriorNoWithEntity() {
+        Technique kamehamehaTechnique = new Technique();
+        kamehamehaTechnique.setName("Kamehameha");
+        kamehamehaTechnique.setPercentageToPower(30);
+
+        Nickname nickname = new Nickname();
+        nickname.setName("Kakarot");
+
+        FightingSchool fightingSchool = new FightingSchool();
+        fightingSchool.setName("Szkoła Żółwia");
+        fightingSchool.setPercentageToPower(10);
+
+        Warrior warrior = new Warrior();
+        warrior.setName("Goku");
+        warrior.setSurname("Son");
+        warrior.setNickname(nickname);
+        warrior.setPower(9008);
+        warrior.getTechniques().add(kamehamehaTechnique);
+        warrior.setFightingSchool(fightingSchool);
+        return warrior;
+    }
+
 }
