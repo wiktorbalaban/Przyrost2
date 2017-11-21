@@ -2,6 +2,7 @@ package hibernate.test;
 
 import hibernate.model.Arena;
 import hibernate.model.Tournament;
+import hibernate.model.Warrior;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -38,6 +39,8 @@ public class CreateTournametTableTest {
                 tournament.setName("Turniej 1");
                 tournament.setDate(LocalDate.now());
                 tournament.setArena(arena);
+                Warrior warrior = CreateWarriorTableTest.createTestWarrior(entityManager);
+                tournament.getParticipants().add(warrior);
 
                 entityManager.persist(tournament);
 
@@ -45,7 +48,19 @@ public class CreateTournametTableTest {
 
                 String message = "TournamentFromBase " + tournamentFromBase.getName()
                         + " odbył się " + tournamentFromBase.getDate()
-                        + " na " + tournamentFromBase.getArena().getName();
+                        + " na " + tournamentFromBase.getArena().getName() +
+                        ".\nW turnieju wzięli udział:\n";
+                StringBuilder stringBuilder = new StringBuilder();
+                for (Warrior w : tournamentFromBase.getParticipants()
+                        ) {
+                    stringBuilder.append(w.getSurname());
+                    stringBuilder.append(" ");
+                    stringBuilder.append(w.getName());
+                    stringBuilder.append(" ");
+                    stringBuilder.append(w.getNickname().getName());
+                    stringBuilder.append("\n");
+                }
+                message += stringBuilder + "KONIEC";
                 System.out.println(message);
             }
 
