@@ -24,6 +24,10 @@ public class Warrior {
     @JoinColumn(name = "NICKNAME_ID", referencedColumnName = "id")
     Nickname nickname;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WIFE_ID", referencedColumnName = "id")
+    Wife wife;
+
     @Column(name = "power")
     private int power;
 
@@ -87,5 +91,13 @@ public class Warrior {
 
     public void setFightingSchool(FightingSchool fightingSchool) {
         this.fightingSchool = fightingSchool;
+    }
+
+    public Wife getWife() {
+        return wife;
+    }
+
+    public void setWife(Wife wife) {
+        this.wife = wife;
     }
 }
