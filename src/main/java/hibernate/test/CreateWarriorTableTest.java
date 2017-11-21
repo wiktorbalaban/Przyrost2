@@ -23,22 +23,7 @@ public class CreateWarriorTableTest {
             entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
 
-            Technique kamehamehaTechnique = new Technique();
-            kamehamehaTechnique.setName("Kamehameha");
-            kamehamehaTechnique.setPercentageToPower(30);
-            entityManager.persist(kamehamehaTechnique);
-
-            Nickname nickname = new Nickname();
-            nickname.setName("Kakarot");
-            entityManager.persist(nickname);
-
-            Warrior warrior = new Warrior();
-            warrior.setName("Goku");
-            warrior.setSurname("Son");
-            warrior.setNickname(nickname);
-            warrior.setPower(9008);
-            warrior.getTechniques().add(kamehamehaTechnique);
-            entityManager.persist(warrior);
+            Warrior warrior = createTestWarrior(entityManager);
 
             Warrior warriorFromBase = entityManager.find(Warrior.class, warrior.getId());
             String message = "Wojownik " + warriorFromBase.getSurname() + " " + warriorFromBase.getName()
@@ -51,7 +36,8 @@ public class CreateWarriorTableTest {
                 stringBuilder.append(" ");
                 stringBuilder.append(t.getName());
             }
-            message += stringBuilder + ".";
+            message += stringBuilder
+                    + " i uczy się w szkole walki " + warriorFromBase.getFightingSchool().getName() + ".";
             System.out.println(message);
 
             //zakoncz transakcje
@@ -66,6 +52,31 @@ public class CreateWarriorTableTest {
         } finally {
             if (entityManager != null) entityManagerFactory.close();
         }
+    }
+
+    public static Warrior createTestWarrior(EntityManager entityManager) {
+        Technique kamehamehaTechnique = new Technique();
+        kamehamehaTechnique.setName("Kamehameha");
+        kamehamehaTechnique.setPercentageToPower(30);
+        entityManager.persist(kamehamehaTechnique);
+
+        Nickname nickname = new Nickname();
+        nickname.setName("Kakarot");
+        entityManager.persist(nickname);
+
+        FightingSchool fightingSchool = new FightingSchool();
+        fightingSchool.setName("Szkoła Żółwia");
+        fightingSchool.setPercentageToPower(10);
+        entityManager.persist(fightingSchool);
+
+        Warrior warrior = new Warrior();
+        warrior.setName("Goku");
+        warrior.setSurname("Son");
+        warrior.setNickname(nickname);
+        warrior.setPower(9008);
+        warrior.getTechniques().add(kamehamehaTechnique);
+        entityManager.persist(warrior);
+        return warrior;
     }
 
 }

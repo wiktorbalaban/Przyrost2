@@ -3,9 +3,9 @@ package hibernate.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ARENA", uniqueConstraints = {
+@Table(name = "FIGHTING_SCHOOL", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"id"})})
-public class Arena {
+public class FightingSchool {
 
     @Id @GeneratedValue
     @Column(name = "id")
@@ -13,6 +13,12 @@ public class Arena {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "percentageToPower")
+    private int percentageToPower;
+
+    public FightingSchool() {
+    }
 
     public int getId() {
         return id;
@@ -24,5 +30,13 @@ public class Arena {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPercentageToPower() {
+        return percentageToPower;
+    }
+
+    public void setPercentageToPower(int percentageToPower) {
+        this.percentageToPower = percentageToPower;
     }
 }

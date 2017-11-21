@@ -2,6 +2,7 @@ package hibernate.test;
 
 import hibernate.model.Arena;
 import hibernate.model.Tournament;
+import hibernate.model.Warrior;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -38,6 +39,8 @@ public class CreateTournametTableTest {
                 tournament.setName("Turniej 1");
                 tournament.setDate(LocalDate.now());
                 tournament.setArena(arena);
+                Warrior warrior = CreateWarriorTableTest.createTestWarrior(entityManager);
+                tournament.getParticipants().add(warrior);
 
                 entityManager.persist(tournament);
 

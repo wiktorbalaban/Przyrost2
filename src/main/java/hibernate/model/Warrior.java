@@ -9,7 +9,8 @@ import java.util.List;
         @UniqueConstraint(columnNames = {"id"})})
 public class Warrior {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "id")
     private int id;
 
@@ -20,15 +21,15 @@ public class Warrior {
     private String surname;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="NICKNAME_ID", referencedColumnName = "id")
+    @JoinColumn(name = "NICKNAME_ID", referencedColumnName = "id")
     Nickname nickname;
 
     @Column(name = "power")
     private int power;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name="ARENA_ID", referencedColumnName = "id")
-//    private ; Szkoła walki
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FIGHTING_SCHOOL_ID", referencedColumnName = "id")
+    private FightingSchool fightingSchool;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Technique> techniques = new ArrayList<>();
@@ -78,5 +79,13 @@ public class Warrior {
 
     public void setTechniques(List<Technique> techniques) {
         this.techniques = techniques;
+    }
+
+    public FightingSchool getFightingSchool() {
+        return fightingSchool;
+    }
+
+    public void setFightingSchool(FightingSchool fightingSchool) {
+        this.fightingSchool = fightingSchool;
     }
 }
