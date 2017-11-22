@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hibernate.model.Tournament;
 import hibernate.model.Warrior;

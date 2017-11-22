@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TECHNIQUE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name"})})
+        @UniqueConstraint(columnNames = {"id"})})
 public class Technique {
 
     @Id @GeneratedValue

@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hibernate.model.Tournament;
 import hibernate.model.Warrior;
@@ -30,11 +31,17 @@ public class CreatePrzyrost2Serwer {
 
             ObjectMapper objectMapper=new ObjectMapper();
             try {
-                warriors = objectMapper.readValue(new File("data/json/tournaments"),  new TypeReference<ArrayList<Warrior>>(){});
+                warriors = objectMapper.readValue(new File("data/json/warriors"),  new TypeReference<ArrayList<Warrior>>(){});
                 tournaments = objectMapper.readValue(new File("data/json/tournaments"),  new TypeReference<ArrayList<Tournament>>(){});
 
-                entityManager.persist(warriors);
-                entityManager.persist(tournaments);
+                for (Warrior warrior: warriors
+                     ) {
+                    entityManager.persist(warrior);
+                }
+                for (Tournament tournament: tournaments
+                        ) {
+                    entityManager.persist(tournament);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
