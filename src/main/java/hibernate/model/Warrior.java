@@ -22,22 +22,23 @@ public class Warrior {
     @Column(name = "surname")
     private String surname;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "NICKNAME_ID", referencedColumnName = "id")
     Nickname nickname;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "WIFE_ID", referencedColumnName = "id")
     Wife wife;
 
     @Column(name = "power")
     private int power;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "FIGHTING_SCHOOL_ID", referencedColumnName = "id")
     private FightingSchool fightingSchool;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "WARRIOR_TECHNIQUE", joinColumns = {@JoinColumn(name = "WARRIOR_ID")}, inverseJoinColumns = {@JoinColumn(name = "TECHNIQUE_ID")})
     private List<Technique> techniques = new ArrayList<>();
 
     public Warrior() {

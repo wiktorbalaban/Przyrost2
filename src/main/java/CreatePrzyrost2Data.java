@@ -30,6 +30,7 @@ public class CreatePrzyrost2Data {
         try {
             objectMapper.writeValue(new File("data/json/tournaments"),tournaments);
             objectMapper.writeValue(new File("data/json/warriors"),warriors);
+            objectMapper.writeValue(new File("data/json/techniques"),randomWarrior.getTechniques());
         } catch (IOException e) {
             e.printStackTrace();
         }

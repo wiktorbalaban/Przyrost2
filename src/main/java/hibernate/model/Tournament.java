@@ -26,11 +26,11 @@ public class Tournament {
     @Column(name = "date")
     private LocalDate date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ARENA_ID", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "ARENA_ID")
     private Arena arena;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "PARTICIPANT", joinColumns = {@JoinColumn(name = "TOURNAMENT_ID")}, inverseJoinColumns = {@JoinColumn(name = "WARRIOR_ID")})
     private List<Warrior> participants = new ArrayList<>();
 

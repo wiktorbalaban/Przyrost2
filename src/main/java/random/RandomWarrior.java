@@ -40,6 +40,14 @@ public class RandomWarrior {
 
     }
 
+    public ArrayList<Technique> getTechniques() {
+        return techniques;
+    }
+
+    public ArrayList<FightingSchool> getFightingSchools() {
+        return fightingSchools;
+    }
+
     public ArrayList<String> getNames() {
         return names;
     }
@@ -97,13 +105,29 @@ public class RandomWarrior {
         return result;
     }
 
+    public hibernate.model.Warrior getWithoutRandomSchoolAndTechnicks() {
+        hibernate.model.Warrior result = new hibernate.model.Warrior();
+
+        result.setName(getRandomName());
+        result.setSurname(getRandomSurname());
+
+        Nickname nickname = new Nickname();
+        nickname.setName(getRandomNicknameName());
+        result.setNickname(nickname);
+
+        result.setPower(getRandomIntBetween(1, 10001));
+        result.setWife(getRandomWife());
+
+        return result;
+    }
+
     /***
      * Random number fom low to high-1
      * @param low
      * @param high
      * @return
      */
-    private int getRandomIntBetween(int low, int high) {
+    public static int getRandomIntBetween(int low, int high) {
         Random r = new Random();
         return r.nextInt(high - low) + low;
     }

@@ -47,6 +47,15 @@ public class RandomTournament {
         return result;
     }
 
+    public Tournament getWithoutArenaAndParticipants(final ArrayList<Warrior> warriors, final int howManyParticipants) {
+        Tournament result = new Tournament();
+
+        result.setName(getTournamentName());
+        result.setDate(getRandomDate());
+
+        return result;
+    }
+
     private void dataGetter1(ArrayList<String> arrayList, String pathFile) {
         try (BufferedReader br = new BufferedReader(new FileReader(new File(pathFile)))) {
             String line;
