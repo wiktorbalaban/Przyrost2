@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RandomData {
+public class RandomWarrior {
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<String> surnames = new ArrayList<>();
     private ArrayList<String> wifeNames = new ArrayList<>();
@@ -22,21 +22,21 @@ public class RandomData {
     private ArrayList<Technique> techniques = new ArrayList<>();
 
 
-    public RandomData() {
+    public RandomWarrior() {
         dataGetter1(names, "data/random/names");
         dataGetter1(surnames, "data/random/surnames");
         dataGetter1(wifeNames, "data/random/wife-names");
         dataGetter2(bodyParts, "data/random/body_parts");
         dataGetter1(adjectives, "data/random/adjectives");
-        dataGetter1(techniquesNames, "data/random/techniquesNames");
-        dataGetter1(animalsNames, "data/random/animalsNames");
+        dataGetter1(techniquesNames, "data/random/techniques");
+        dataGetter1(animalsNames, "data/random/schools");
         dataGetter1(arenas, "data/random/arenas");
 
         createRandomSchools();
         createRandomTechniques();
     }
 
-    public RandomData(boolean test) {
+    public RandomWarrior(boolean test) {
 
     }
 
@@ -79,8 +79,8 @@ public class RandomData {
         }
     }
 
-    public Warrior getRandomWarrior() {
-        Warrior result = new Warrior();
+    public hibernate.model.Warrior get() {
+        hibernate.model.Warrior result = new hibernate.model.Warrior();
 
         result.setName(getRandomName());
         result.setSurname(getRandomSurname());
@@ -137,12 +137,18 @@ public class RandomData {
 
     ArrayList<Technique> getRandomTechniques(){
         ArrayList<Technique> result=new ArrayList<>();
+        ArrayList<Integer> integers = new ArrayList<>();
 
         int howMany=getRandomIntBetween(0,11);
-        for(int i=0;i<howMany;i++){
-
+        for(int i=0;i<techniques.size();i++){
+            integers.add(i);
         }
-
+        for (int i = 0; i < howMany && i < techniques.size(); i++) {
+            int integerIndex = getRandomIntBetween(0, integers.size());
+            int toTake = integers.get(integerIndex);
+            result.add(techniques.get(toTake));
+            integers.remove(integerIndex);
+        }
         return result;
     }
 
@@ -154,6 +160,18 @@ public class RandomData {
             technique.setPercentageToPower(getRandomIntBetween(0,10001));
             techniques.add(technique);
         }
+//        ArrayList<Warrior> result = new ArrayList<>();
+//        ArrayList<Integer> integers = new ArrayList<>();
+//
+//        for (int i = 0; i < warriors.size(); i++) {
+//            integers.add(i);
+//        }
+//        for (int i = 0; i < howManyParticipants; i++) {
+//            int integerIndex = getRandomIntBetween(0, integers.size());
+//            int toTake = integers.get(integerIndex);
+//            result.add(warriors.get(toTake));
+//            integers.remove(integerIndex);
+//        }
     }
 
     private Wife getRandomWife(){
