@@ -1,10 +1,8 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hibernate.model.FightingSchool;
-import hibernate.model.Technique;
-import hibernate.model.Tournament;
-import hibernate.model.Warrior;
+import hibernate.model.*;
+import random.RandomTournament;
 import random.RandomWarrior;
 
 import javax.persistence.EntityManager;
@@ -63,7 +61,28 @@ public class CreatePrzyrost2Serwer {
                 entityManager.persist(warriors.get(j));
             }
 
+            RandomTournament randomTournament=new RandomTournament();
+            for (Arena a: randomTournament.getArenas()
+                    ) {
+                entityManager.persist(a);
+            }
+            for(int j=0;j<10;j++) {
+                tournaments.add(randomTournament.getWithoutArenaAndParticipants());
+                ArrayList<Integer> integers = new ArrayList<>();
 
+                int howMany= 100;
+                for(int i=0;i<warriors.size();i++){
+                    integers.add(i);
+                }
+                for (int i = 0; i < howMany && i < warriors.size(); i++) {
+                    int integerIndex = getRandomIntBetween(0, integers.size());
+                    int toTake = integers.get(integerIndex);
+                    tournaments.get(j).getParticipants().add(warriors.get(toTake));
+                    integers.remove(integerIndex);
+                }
+                tournaments.get(j).setArena(randomTournament.getArenas().get(getRandomIntBetween(0, randomTournament.getArenas().size())));
+                entityManager.persist(tournaments.get(j));
+            }
 
             //zakoncz transakcje
             entityManager.getTransaction().commit();

@@ -22,6 +22,10 @@ public class RandomTournament {
     private ArrayList<String> arenasNames = new ArrayList<>();
     private int tournamentCount = 0;
 
+    public ArrayList<Arena> getArenas() {
+        return arenas;
+    }
+
     public RandomTournament() {
         dataGetter1(arenasNames, "data/random/arenas");
         createRandomArena();
@@ -47,7 +51,7 @@ public class RandomTournament {
         return result;
     }
 
-    public Tournament getWithoutArenaAndParticipants(final ArrayList<Warrior> warriors, final int howManyParticipants) {
+    public Tournament getWithoutArenaAndParticipants() {
         Tournament result = new Tournament();
 
         result.setName(getTournamentName());
