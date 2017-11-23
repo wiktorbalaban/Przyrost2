@@ -103,4 +103,10 @@ public class Warrior {
     public void setWife(Wife wife) {
         this.wife = wife;
     }
+
+    public boolean sameAs(Warrior w){
+        return id==w.id&&name.equals(w.name)&&surname.equals(w.surname)&&nickname.getId()==w.nickname.getId()&&
+                nickname.getName().equals(w.nickname.getName())&&techniques.size()==w.techniques.size();
+    }
+
 }
