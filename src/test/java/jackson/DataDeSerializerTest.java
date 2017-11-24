@@ -22,8 +22,8 @@ public class DataDeSerializerTest {
         for(int i=0;i<10;i++){
             warriors.add(randomWarrior.get());
         }
-        DataDeSerializer.deserializeToFile("data/json/testJson.json",warriors);
-        ArrayList<Warrior> warriorsFromJson=DataDeSerializer.serializeFromFile("data/json/testJson.json");
+        DataDeSerializer.serializeToFile("data/json/testJson.json",warriors);
+        ArrayList<Warrior> warriorsFromJson=DataDeSerializer.deserializeFromFile("data/json/testJson.json");
         boolean result=true;
         for(int i=0;i<10;i++){
             if(!warriors.get(i).sameAs(warriorsFromJson.get(i))){

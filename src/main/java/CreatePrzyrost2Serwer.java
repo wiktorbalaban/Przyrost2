@@ -2,6 +2,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hibernate.model.*;
+import jackson.DataDeSerializer;
 import random.RandomTournament;
 import random.RandomWarrior;
 
@@ -20,6 +21,7 @@ public class CreatePrzyrost2Serwer {
         System.out.println("CreateTournametTableTestStart");
 
         EntityManager entityManager = null;
+
 
         EntityManagerFactory entityManagerFactory = null;
 
@@ -87,6 +89,7 @@ public class CreatePrzyrost2Serwer {
             //zakoncz transakcje
             entityManager.getTransaction().commit();
 
+            DataDeSerializer.serializeToFile("data/json/createPrzyrost/warriors.json",warriors);
             System.out.println("Done");
 
             entityManager.close();

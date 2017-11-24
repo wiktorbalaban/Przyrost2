@@ -11,7 +11,7 @@ import java.util.List;
 
 public final class DataDeSerializer {
 
-    public static void deserializeToFile(String filePath, ArrayList<Warrior> warriors){
+    public static void serializeToFile(String filePath, ArrayList<Warrior> warriors){
         ObjectMapper mapper=new ObjectMapper();
         try {
             mapper.writeValue(new File(filePath), warriors);
@@ -19,7 +19,7 @@ public final class DataDeSerializer {
             e.printStackTrace();
         }
     }
-    public static  ArrayList<Warrior> serializeFromFile(String filePath){
+    public static  ArrayList<Warrior> deserializeFromFile(String filePath){
         ObjectMapper mapper=new ObjectMapper();
         ArrayList<Warrior> result=new ArrayList<>();
         try {
@@ -29,5 +29,7 @@ public final class DataDeSerializer {
         }
         return result;
     }
+
+
 
 }
