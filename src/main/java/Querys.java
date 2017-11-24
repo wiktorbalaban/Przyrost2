@@ -31,11 +31,11 @@ public class Querys {
 
             //List<Warrior> warriors=getWarriorsQuery(entityManager);
             List<Warrior> warriors =getWarriorsWhoHasThisTechniqueQuery(entityManager,"Kamehame-Ha");
+            List<Warrior> warriorsStronicowanie=getWarriorsStronicowanieQuery(entityManager);
             //List<FightingSchool> fightingSchools=getFightingSchoolsQuery(entityManager);
             //List<Collection> techniques=getWarriorsTechniquesQuery(entityManager);
             //List<Technique> techniques = getTechniquesQuery(entityManager);
             //List<Technique> techniques = getTechniquesQueryNamedLike(entityManager,"");
-
             //zakoncz transakcje
             entityManager.getTransaction().commit();
 
@@ -54,6 +54,15 @@ public class Querys {
 
     static List<Warrior> getWarriorsQuery(EntityManager entityManager) {
         TypedQuery<Warrior> query = entityManager.createQuery("SELECT k FROM Warrior k", Warrior.class);
+        return query.getResultList();
+    }
+
+    static List<Warrior> getWarriorsStronicowanieQuery(EntityManager entityManager) {
+        TypedQuery<Warrior> query = entityManager.createQuery("SELECT k FROM Warrior k", Warrior.class);
+        int pageNumber = 1;
+        int pageSize = 10;
+        query.setFirstResult((pageNumber-1) * pageSize);
+        query.setMaxResults(pageSize);
         return query.getResultList();
     }
 
